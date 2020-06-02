@@ -1,3 +1,8 @@
+/*
+"CavyIoT.nodemcu-V0.03.bin" 
+
+CavyIoTdevelopment board firmware download for IC ESP8266  and NodeMCU 1.0(ESP-12E Module)
+*/
 #include <ESP8266httpUpdate.h>
 const char* ssid =     "WiFiSSID";     // Set your router SSID
 const char* password = "WiFiPassword"; // Set your router password
@@ -9,7 +14,7 @@ void setup()
                        Serial.print(".");
                        delay(500);
                                }
-  Serial.print("Downloding.........Wait......for 2 to 3 minutesfor update...");
+  Serial.print("Downloding.........Wait  2 to 3 minutes for update...");
   t_httpUpdate_return ret = ESPhttpUpdate.update("http://www.developers.cavyiot.com/downloads/CavyIoT.nodemcu-V0.03.bin"); 
    switch (ret) {
     case HTTP_UPDATE_FAILED:
