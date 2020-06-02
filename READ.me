@@ -1,0 +1,124 @@
+CavyIoT  Development Board:
+
+ CavyIoT.nodemcuV0.02.bin
+
+Firmware is released  as free open source  firmware,   for the developers by  Cavy Agrotronics  .
+This firmware is free for all manufactures who want to add power of IoT in their product . 
+Very useful to Hobbyist, enthusiast, programmers, engineering student, teachers for  availing
+CavyIOT  services. 
+       It is language independent, means no matters what programming language the user is 
+using in his project.User can interface CavyIoT Development Board with simple Send-Response protocol. 
+With the help of our firmware, Developer of any community can develop and deploy a powerful IoT 
+system/application to the end user.
+            Simple interfacing API architecture makes easier for developers in development process.
+Firmware converts IC ESP8266 into CavyIoT Development Board.
+Features of our platform and development board-
+•	Data visualization
+•	Report generation
+•	Full control over system
+•	Automation
+•	Log file of all operations and device status
+•	Triggers 
+•	Multimaster Control Panel
+•	Automatic and manual mode
+•	Live charts and Gauges
+•	Minimum Data consumption and maximum utility
+//---------------------------------------------------------------------------------------------------------------------
+Pin configuration of CavyIoT  Development Board
+https://github.com/CavyAgrotronics/CavyIoTdevelopmentBoard/blob/master/CavyIoTdevelopmentBoard/firmware-connection.svg
+//------------------------------------------Interfacing---------------------------------------------------------------------
+
+
+The basic interface is to send CavyIoT-DB  a line of Instruction within enclosed chevrons
+as<ShowDemo(WifiSSID,WIFiPassword,cavyiot-username,cavyiot-password,device) >  then wait 
+for the proper response message with open chevrons (>) followed by  ok! or error!( “>ok!” Or “>Error!” ) .
+This signals CavyIoT-DB has completed the parsing and executed the command.
+At times, CavyIoT-DB may not respond immediately. This happens when CavyIoT-DB is busy doing something
+else mostly happened with ShowDemo () .
+The response messages are strings terminated by a return. These messages are "pushed" from
+CavyIoT-DB to the user in response to a query or instruction to let the user what happened. 
+The primary way to talk to CavyIoT-DB  is performed by sending it a command string of characters
+( Instruction within enclosed chevrons”<>” ), followed by a carriage return. CavyIoT-DB will then 
+process the string and then reply back with a response message, also terminated by a return,
+to tell you how it went. 
+The interface for CavyIoT-DB  is fairly simple and straightforward. With CavyIoT-DB, steps have 
+been taken to try to make it even easier for new users to get started, and for GUI developers to 
+write their own custom interfaces to CavyIoT-DB.
+
+
+Writing an Interface for CavyIoT-DB:
+Streaming Protocol: Simple Send-Response [Recommended]
+The send-response streaming protocol is the most fool-proof and simplest method to stream 
+a command to CavyIoT-DB. The host PC/ MCU interface simply sends a line of  command to 
+CavyIoT-DB and waits for an   Ok! or  Error! Response message before sending the
+next line of command. So, no matter if CavyIoT-DB needs to wait for room in the look-ahead 
+planner buffer to finish parsing and executing the last line of command  or if the the host 
+computer is busy doing something, this guarantees both to the host PC /MCU and CavyIoT-DB, 
+the programmed command has been sent and received properly. 
+
+See the Commands document to see what they are and how they work.
+( Note :All commands for CavyIoT-DB are not case sensitive! )
+
+1)DefineButtonLables(  Label (0), Action1, Action2,
+                     Label (1), Action1, Action2,
+                     Label (2), Action1, Action2,
+                     Label (3), Action1, Action2)
+                     ) 
+Description: Sets the Label for button(index) and Labels for the its actions
+                  Button when is in Action1  OUTPUT     Pin(index) is   LOW
+	                 Button when is in Action2  OUTPUT     Pin(index)  is  HIGH
+ Response message:  <Buttons labelled >Ok!
+ 
+2)StartDevice(WiFiSSID,WiFiPassword,CavyIoT-username,password,device)  
+Description:Connects to the WiFi and starts pinging.                      
+Response message:<Device Started ! Ready to send data >Ok!
+
+3)UpdateSensorData( Sensor1, S1_Value, S1_Unit,
+	                   Sensor2, S2_Value, S2_Unit,
+                    Sensor3, S3_Value, S3_Unit,
+                    Sensor4, S4_Value, S4_Unit)
+Ex:UpdateSensorData(Temperature,35.12,C,humidity,19.00,Rh,Speed,16.00,km/hr,pressure,00.12,Psi)       
+Response message : <[array of variables of device status]>Ok! 
+
+
+
+                                                 Library for Arduino
+CavyIoTdevelopmentBoard.h 
+Now take a brief look on functions of CavyIoTdevelopmentBoard.h  library.
+1.	SetPort()
+Description: Defines the arduino  pins and Baud rate for communication with CavyIoT-DB
+             using software serial library.
+Syntax: SetPort( rx, tx, rst) where rx is the pin on which to receive serial data, 
+tx  is the pin on which to transmit serial data, rst is reset pin.
+Example:SetPort(10,11,13);
+Returns:Nothing
+2.	DefineButtonLables( Lable (0),Action1,Action2,
+                       Lable (1),Action1,Action2,
+                       Lable (2),Action1,Action2,
+                       Lable (3),Action1,Action2)
+                       ) 
+Description: Sets the Label for button(index) and Labels for the its actions
+               Button when is in Action1  OUTPUT     Pin(index) is   LOW
+	              Button when is in Action2  OUTPUT     Pin(index)  is  HIGH
+
+ Response message:  <Buttons labelled >Ok!
+3.	StartDevice  (WiFiSSID,WiFiPassword,CavyIoT-username,password,device)  
+Description:  Connects to the WiFi and starts pinging. 
+Response message  : <[array of variables of device status]>Ok!
+4.	UpdateSensorData(Sensor1, S1_Value, S1_Unit,
+                    Sensor2, S2_Value, S2_Unit,
+                    Sensor3, S3_Value, S3_Unit,
+                    Sensor4, S4_Value, S4_Unit)
+                      )    
+Description:  Updates the value of sensor on the server. 
+Response message  : <[array of device statusvariables ]>Ok! 
+//-------------------------------------------------------------
+For Demo  & Testing:
+ShowDemo((WiFiSSID,WiFiPassword,CavyIoT-username,password,device)  
+Description:  Connects to the WiFi and starts pinging.
+Response message  : <[array of variables of device status]>Ok!
+///---------------------------------------------------------------------
+
+https://www.cavyiot.com
+https:www.developers.cavyiot.com
+
