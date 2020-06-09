@@ -15,31 +15,30 @@ class CavyIoT
    CavyIoT();
   //-------------------------------------------------------------------------------------------------------------
     String Status; 
-    void loop();
+        void loop();
 	void softwareReset( uint8_t prescaller);
-    void SetPort(int r,int t,int reset);    
+        void SetPort(int r,int t,int reset);    
 	bool DefineButtonLables(String S1,String S1action1,String S1action2,
-							String S2,String S2action1,String S2action2,
-							String S3,String S3action1,String S3action2,
-							String S4,String S4action1,String S4action2	
+				String S2,String S2action1,String S2action2,
+				String S3,String S3action1,String S3action2,
+				String S4,String S4action1,String S4action2	
 	                                );
-    bool StartDevice(String wifissid,String wifipassword,String username,String password,String device);
-	void ShowDemo(String wifissid,String wifipassword,String username,String password,String device);
-	
+        bool StartDevice(String wifissid,String wifipassword,String username,String password,String device);
+	void ShowDemo(String wifissid,String wifipassword,String username,String password,String device);	
 	void UpdateSensorData(String S1,String S1value,String S1unit,
-                          String S2,String S2value,String S2unit
-                          )	;
+                             String S2,String S2value,String S2unit
+                               );
 	void UpdateSensorData(String S1,String S1value,String S1unit,
-                          String S2,String S2value,String S2unit,
-						  String S3,String S3value,String S3unit
-                          )	;					  
-	void UpdateSensorData(  String S1,String S1value,String S1unit,
-							String S2,String S2value,String S2unit,
-							String S3,String S3value,String S3unit,
-							String S4,String S4value,String S4unit	
-	                                );
+                              String S2,String S2value,String S2unit,
+			      String S3,String S3value,String S3unit
+                              )	;					  
+	void UpdateSensorData(String S1,String S1value,String S1unit,
+			     String S2,String S2value,String S2unit,
+			     String S3,String S3value,String S3unit,
+			     String S4,String S4value,String S4unit	
+	                      );
 									
-		//bool HardwareSetUp(int setup,int rly1,int rly2,int rly3,int rly4);
+		
 	
    //------------------------------------------------------------------  ----------------------------------------- 
  
@@ -124,11 +123,11 @@ String S3,String S3action1,String S3action2,
 String S4,String S4action1,String S4action2)	
  {
  String command="<DefineButtonLables(";
-         command=command+
-		          S1+","+ S1action1+","+ S1action2+","+
+                 command=command+
+		      S1+","+ S1action1+","+ S1action2+","+
 	              S2+","+ S2action1+","+ S2action2+","+
-				  S3+","+ S3action1+","+ S3action2+","+
-				  S4+","+ S4action1+","+ S4action2+","+
+		      S3+","+ S3action1+","+ S3action2+","+
+		      S4+","+ S4action1+","+ S4action2+","+
                    ")>";
  String recd;
  static char buffer[80];
@@ -161,7 +160,7 @@ String S2,String S2value,String S2unit
  {
  String command="<UpdateSensorData(";
          command=command+
-		          S1+","+ S1value+","+ S1unit+","+
+		      S1+","+ S1value+","+ S1unit+","+
 	              S2+","+ S2value+","+ S2unit+
                    ")>";
  String recd;
@@ -179,9 +178,9 @@ String S3,String S3value,String S3unit
  {
  String command="<UpdateSensorData(";
          command=command+
-		           S1+","+ S1value+","+ S1unit+","+
+		       S1+","+ S1value+","+ S1unit+","+
 	               S2+","+ S2value+","+ S2unit+","+
-				   S3+","+ S3value+","+ S3unit+
+		       S3+","+ S3value+","+ S3unit+
                    ")>";
  String recd;
  SoftwareSerial port(_r, _t); 
@@ -197,10 +196,10 @@ String S4,String S4value,String S4unit)
  {
  String command="<UpdateSensorData(";
          command=command+
-		          S1+","+ S1value+","+ S1unit+","+
+		      S1+","+ S1value+","+ S1unit+","+
 	              S2+","+ S2value+","+ S2unit+","+
-				  S3+","+ S3value+","+ S3unit+","+
-				  S4+","+ S4value+","+ S4unit+
+		      S3+","+ S3value+","+ S3unit+","+
+		      S4+","+ S4value+","+ S4unit+
                    ")>";
  String recd;
  SoftwareSerial port(_r, _t); 
@@ -226,10 +225,10 @@ String username,String password,String device)
                recd=buffer;
               if (recd.startsWith("<", 0)&& recd.endsWith(">Ok!"))
               {
-			    message=recd.substring( (recd.indexOf('<')+1),(recd.indexOf('>')) );
+	          message=recd.substring( (recd.indexOf('<')+1),(recd.indexOf('>')) );
 	            i=26;
 	            
-	           }
+	       }
 			   
 			   
              }
